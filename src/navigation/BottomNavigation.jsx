@@ -1,18 +1,27 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { NavigationContainer } from "@react-navigation/native";
-import HomeScreen from "../screens/HomeScreen";
-import SettingsScreen from "../screens/SettingsScreen";
+import { DefaultTheme, NavigationContainer } from "@react-navigation/native";
+import SettingsScreen from "../screens/SettingsScreen/SettingsScreen";
 import TabBar from "./TabBar";
+import { useColorScheme } from "react-native";
+import LightTheme from "../constants/Themes";
+import HomeWorkScreen from "../screens/HomeWorkScreen/HomeWorkScreen";
+import DailaryScreen from "../screens/DailaryScreen/DailaryScreen";
 
 const Tab = createBottomTabNavigator();
 
-export default function BottomNavigation () {
+export default function BottomNavigation() {
+  const scheme = useColorScheme();
+  console.log(scheme);
+
   return (
-    <NavigationContainer>
-      <Tab.Navigator tabBar={(props) => <TabBar {...props} />}>
-        <Tab.Screen name="Home" component={HomeScreen} />
-        <Tab.Screen name="Settings" component={SettingsScreen} />
-        <Tab.Screen name="Settingss" component={SettingsScreen} />
+    <NavigationContainer theme={scheme === "dark" ? DefaultTheme : LightTheme}>
+      <Tab.Navigator
+        // tabBarColor={"#000"}}
+        tabBar={(props) => <TabBar {...props} />}
+      >
+        <Tab.Screen name="HomeWorkScreen" component={HomeWorkScreen} options={{ headerShown: false }} />
+        <Tab.Screen name="DailaryScreen" component={DailaryScreen} options={{ headerShown: false }} />
+        <Tab.Screen name="Settings" component={SettingsScreen} options={{ headerShown: false }} />
       </Tab.Navigator>
     </NavigationContainer>
   );
