@@ -14,7 +14,7 @@ export default function TabBar({ state, descriptors, navigation }) {
         alignSelf: "center",
         height: 60,
         marginBottom: 10,
-        borderRadius: 30,
+        borderRadius: 20,
         alignItems: "center",
         justifyContent: "center",
       }}>
@@ -26,7 +26,6 @@ export default function TabBar({ state, descriptors, navigation }) {
               : options.title !== undefined
                 ? options.title
                 : route.name;
-          console.log(label);
 
           const isFocused = state.index === index;
 

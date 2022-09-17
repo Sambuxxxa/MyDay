@@ -13,7 +13,7 @@ export default function DailaryScreen() {
       <StatusBar backgroundColor={colors.background} barStyle={"dark-content"} />
       <ScrollView showsVerticalScrollIndicator={false}
                   style={[styles.container, { backgroundColor: colors.background }]}>
-        <View style={{ height: 40 }} />
+        <View style={{ height: 10 }} />
         <Day day={"Понеділок"} subjects={MONDAY} />
         <Day day={"Вівторок"} subjects={TUESDAY} />
         <Day day={"Середа"} subjects={WEDNESDAY} />

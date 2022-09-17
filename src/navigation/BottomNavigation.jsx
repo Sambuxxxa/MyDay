@@ -11,11 +11,11 @@ const Tab = createBottomTabNavigator();
 
 export default function BottomNavigation() {
   const scheme = useColorScheme();
-  console.log(scheme);
 
   return (
     <NavigationContainer theme={scheme === "dark" ? DefaultTheme : LightTheme}>
       <Tab.Navigator
+        initialRouteName={"DailaryScreen"}
         // tabBarColor={"#000"}}
         tabBar={(props) => <TabBar {...props} />}
       >
