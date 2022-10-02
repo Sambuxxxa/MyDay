@@ -4,7 +4,7 @@ import { useState } from "react";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import AntDesign from "react-native-vector-icons/AntDesign";
 import SubjectItem from "./SubjectItem";
-import Modal1 from "./Modal1";
+import AddingModal from "./AddingModal";
 
 const tasks = [
   {
@@ -157,7 +157,7 @@ export default function HomeWorkScreen() {
       <Modal
         visible={visibleAddEl}
         onRequestClose={() => setVisibleAddEl(false)}>
-        <Modal1 />
+        <AddingModal />
       </Modal>
 
     </View>
