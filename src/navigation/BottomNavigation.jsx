@@ -15,12 +15,13 @@ export default function BottomNavigation() {
   return (
     <NavigationContainer theme={scheme === "dark" ? DefaultTheme : LightTheme}>
       <Tab.Navigator
+        screenOptions={{tabBarHideOnKeyboard: true}}
         initialRouteName={"DailaryScreen"}
         // tabBarColor={"#000"}}
         tabBar={(props) => <TabBar {...props} />}
       >
-        <Tab.Screen name="HomeWorkScreen" component={HomeWorkScreen} options={{ headerShown: false }} />
-        <Tab.Screen name="DailaryScreen" component={DailaryScreen} options={{ headerShown: false }} />
+        <Tab.Screen name="HomeWorkScreen" component={HomeWorkScreen} options={{ headerShown: false, tabBarHideOnKeyboard: true }} />
+        <Tab.Screen name="DailaryScreen" component={DailaryScreen} options={{ headerShown: false, tabBarHideOnKeyboard: true }} />
         <Tab.Screen name="Settings" component={SettingsScreen} options={{ headerShown: false }} />
       </Tab.Navigator>
     </NavigationContainer>

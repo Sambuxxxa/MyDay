@@ -1,9 +1,10 @@
-import { FlatList, Pressable, StyleSheet, TextInput, View } from "react-native";
+import {FlatList, Modal, Pressable, StyleSheet, TextInput, View} from "react-native";
 import { useTheme } from "@react-navigation/native";
 import { useState } from "react";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import AntDesign from "react-native-vector-icons/AntDesign";
 import Item from "./Item";
+import Modal1 from "./Modal1";
 
 const tasks = [
   {
@@ -121,6 +122,7 @@ export default function HomeWorkScreen() {
   const { colors } = useTheme();
   const [inpText, setInpText] = useState("");
   const [searchedElements, setSearchedElements] = useState(tasks);
+  const [visibleAddEl, setVisibleAddEl] = useState(false);
 
   return (
     <View style={[styles.container, { backgroundColor: colors.background }]}>
@@ -140,6 +142,7 @@ export default function HomeWorkScreen() {
             style={styles.inp} />
         </View>
         <Pressable
+          onPress={() => setVisibleAddEl(true)}
           style={[styles.btn, { backgroundColor: colors.darkBlue }]}>
           <AntDesign name="plus" size={24} color={colors.white} />
         </Pressable>
@@ -151,6 +154,11 @@ export default function HomeWorkScreen() {
           data={searchedElements}
           renderItem={({ item }) => (<Item item={item} />)} />
       </View>
+      <Modal
+        visible={visibleAddEl}
+        onRequestClose={() => setVisibleAddEl(false)}>
+        <Modal1 />
+      </Modal>
 
     </View>
   );
