@@ -5,7 +5,7 @@ import {mt400, mt600} from "../../constants/Themes"
 import 'react-native-gesture-handler';
 import RBSheet from "react-native-raw-bottom-sheet";
 import SUBJECTS from "../../constants/SUBJECTS";
-import SubjectItem from "./SubjectItem";
+import SubjectModalItem from "./SubjectModalItem";
 
 export default function Modal1() {
   const {colors} = useTheme();
@@ -50,7 +50,7 @@ export default function Modal1() {
           }
         }}
       >
-        <FlatList data={SUBJECTS} renderItem={({item}) => (<SubjectItem onClose={onClose} item={item}/>)}/>
+        <FlatList data={SUBJECTS} renderItem={({item}) => (<SubjectModalItem onClose={onClose} item={item}/>)}/>
       </RBSheet>
     </View>
   );

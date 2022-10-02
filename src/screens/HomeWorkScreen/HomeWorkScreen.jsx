@@ -3,7 +3,7 @@ import { useTheme } from "@react-navigation/native";
 import { useState } from "react";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import AntDesign from "react-native-vector-icons/AntDesign";
-import Item from "./Item";
+import SubjectItem from "./SubjectItem";
 import Modal1 from "./Modal1";
 
 const tasks = [
@@ -152,7 +152,7 @@ export default function HomeWorkScreen() {
         <FlatList
           showsVerticalScrollIndicator={false}
           data={searchedElements}
-          renderItem={({ item }) => (<Item item={item} />)} />
+          renderItem={({ item }) => (<SubjectItem item={item} />)} />
       </View>
       <Modal
         visible={visibleAddEl}
