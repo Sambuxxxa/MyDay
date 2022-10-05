@@ -12,8 +12,8 @@ export default function Day({ day, subjects }) {
       <FlatList data={subjects} renderItem={({ item }) => (
         <View style={styles.subject}>
           <View style={{ flexDirection: "row" }}>
-            <Text style={[styles.number, { color: colors.grey }]}>{item.number}</Text>
-            <Text style={[styles.name, { color: colors.grey }]}>{item.name}</Text>
+            <Text style={[styles.number, { color: item.bold ? colors.grey : "#000" }]}>{item.number}</Text>
+            <Text style={[styles.name, { color: item.bold ? colors.grey : "#000" }]}>{item.name}</Text>
           </View>
           <Text style={[styles.time, { color: colors.lightBlue }]}>{item.time}</Text>
         </View>

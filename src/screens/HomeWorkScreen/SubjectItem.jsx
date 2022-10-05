@@ -1,24 +1,33 @@
-import { StyleSheet, Text, View } from "react-native";
-import { useTheme } from "@react-navigation/native";
+import {Pressable, StyleSheet, Text, TouchableOpacity, View} from "react-native";
+import {useTheme} from "@react-navigation/native";
 import Check from "../../components/Check";
-import { mt400, mt600 } from "../../constants/Themes";
+import {mt400, mt600} from "../../constants/Themes";
+import Ionicons from "react-native-vector-icons/Ionicons";
 
 
-export default function SubjectItem({ item }) {
-  const { colors } = useTheme();
+export default function SubjectItem({item, changeCompleted, deleteItem}) {
+  const {colors} = useTheme();
 
   return (
-    <View style={[styles.container, { backgroundColor: colors.background }]}>
-      <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-        <Check isSelected={item.isCompleted} />
+    <View style={[styles.container, {backgroundColor: colors.background}]}>
+      <Pressable
+        onPress={() => {
+          changeCompleted(item)
+        }}
+        style={{flex: 1, alignItems: "center", justifyContent: "center"}}>
+        <Check isSelected={item.isCompleted}/>
+      </Pressable>
+      <View style={{flex: 7, paddingHorizontal: 10}}>
+        <Text style={[styles.text, {color: colors.darkBlue}]}>{item.text}</Text>
+        <Text style={[styles.subject, {color: colors.grey}]}>{item.subject}</Text>
       </View>
-      <View style={{ flex: 7, paddingHorizontal: 10 }}>
-        <Text style={[styles.text, { color: colors.darkBlue }]}>{item.text}</Text>
-        <Text style={[styles.subject, { color: colors.grey }]}>{item.subject}</Text>
-      </View>
-      {/*<View style={{flex: 1, borderWidth: 1, height: 50, alignItems: "center", justifyContent: "center"}}>*/}
-      {/*  <View style={[styles.important, {backgroundColor: item.important}]}/>*/}
-      {/*</View>*/}
+      <TouchableOpacity
+        onPress={() => {
+          deleteItem(item)
+        }}
+        style={{flex: 1, alignItems: "center", justifyContent: "center"}}>
+        <Ionicons name="trash-outline" size={24} color="black"/>
+      </TouchableOpacity>
     </View>
   );
 }
@@ -30,7 +39,6 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     marginVertical: 5,
     borderWidth: 0.1,
-    // borderRadius: 2,
     paddingVertical: 5,
   },
   important: {

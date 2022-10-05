@@ -7,8 +7,9 @@ import RBSheet from "react-native-raw-bottom-sheet";
 import SUBJECTS from "../../constants/SUBJECTS";
 import SubjectModalItem from "./SubjectModalItem";
 import AntDesign from "react-native-vector-icons/AntDesign";
+import uuid from "react-native-uuid";
 
-export default function AddingModal() {
+export default function AddingModal({storeData, setVisibleAddEl}) {
   const {colors} = useTheme();
   const [subject, setSubject] = useState("Не вибраний");
   const [text, setText] = useState('');
@@ -17,7 +18,6 @@ export default function AddingModal() {
 
   const onOpen = () => {
     modalizeSubject.current.open();
-    // modalizeSubject.current.close();
   };
   const onClose = (item) => {
     modalizeSubject.current.close();
@@ -35,14 +35,24 @@ export default function AddingModal() {
           </Pressable>
         </View>
         <Text style={[styles.title, {color: colors.darkBlue, marginLeft: 20, marginVertical: 10}]}>Завдання:</Text>
-        <TextInput
-          selectionColor={colors.lightBlue}
-          cursorColor={colors.blue}
-          style={styles.inp}
-          value={text}
-          onChangeText={(text) => setText(text)}
-          multiline
-        />
+        <View style={{flex: 1}}>
+          <TextInput
+            selectionColor={colors.lightBlue}
+            cursorColor={colors.blue}
+            style={styles.inp}
+            value={text}
+            onChangeText={(text) => setText(text)}
+            multiline
+          />
+        </View>
+        <Pressable
+          onPress={() => {
+            storeData({isCompleted: false, subject: subject, text: text, id: uuid.v4()})
+            setVisibleAddEl(false)
+          }}
+          style={[styles.btn, {backgroundColor: colors.darkBlue}]}>
+          <AntDesign name="plus" size={35} color={colors.white}/>
+        </Pressable>
         <RBSheet
           animationType={'slide'}
           ref={modalizeSubject}
@@ -58,15 +68,12 @@ export default function AddingModal() {
               backgroundColor: "rgba(0,0,0,0.07)"
             },
             draggableIcon: {
-              backgroundColor: "#000"
+              backgroundColor: "#b4b4b4"
             }
           }}
         >
           <FlatList data={SUBJECTS} renderItem={({item}) => (<SubjectModalItem onClose={onClose} item={item}/>)}/>
         </RBSheet>
-      </View>
-      <View style={[styles.btn, {backgroundColor: colors.darkBlue}]}>
-        <AntDesign name="plus" size={35} color={colors.white} />
       </View>
     </View>
 
@@ -96,7 +103,7 @@ const styles = StyleSheet.create({
     marginHorizontal: 20,
     borderWidth: 0.1,
     borderRadius: 5,
-    paddingHorizontal: 15
+    paddingHorizontal: 15,
   },
   btn: {
     alignSelf: "center",
