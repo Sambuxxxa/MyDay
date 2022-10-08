@@ -12,7 +12,7 @@ export default function SubjectModalItem({item, onClose}) {
     <Pressable
       onPressIn={() => setBackground("#dadada")}
       onPressOut={() => setBackground(colors.background)}
-      onPress={onClose}
+      onPress={() => onClose(item)}
       style={[styles.container, {backgroundColor: background}]}>
       <Text style={styles.text}>{item}</Text>
     </Pressable>
@@ -24,9 +24,11 @@ const styles = StyleSheet.create({
     borderRadius: 5
   },
   text: {
+    lineHeight: 20,
     fontFamily: mt400,
     marginHorizontal: 20,
     fontSize: 15,
     marginVertical: 5,
+    color: "#000"
   }
 });

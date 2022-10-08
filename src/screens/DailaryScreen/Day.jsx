@@ -1,23 +1,22 @@
-import { FlatList, StyleSheet, Text, View } from "react-native";
-import { useTheme } from "@react-navigation/native";
-import { mt600 } from "../../constants/Themes";
+import {StyleSheet, Text, View} from "react-native";
+import {useTheme} from "@react-navigation/native";
+import {mt600} from "../../constants/Themes";
 
 
-export default function Day({ day, subjects }) {
-  const { colors } = useTheme();
+export default function Day({day, subjects}) {
+  const {colors} = useTheme();
 
   return (
-    <View style={[styles.container, { backgroundColor: colors.background }]}>
-      <Text style={[styles.title, { color: colors.darkBlue }]}>{day}</Text>
-      <FlatList data={subjects} renderItem={({ item }) => (
-        <View style={styles.subject}>
-          <View style={{ flexDirection: "row" }}>
-            <Text style={[styles.number, { color: colors.grey }]}>{item.number}</Text>
-            <Text style={[styles.name, { color: colors.grey }]}>{item.name}</Text>
+    <View style={[styles.container, {backgroundColor: colors.background}]}>
+      <Text style={[styles.title, {color: colors.darkBlue}]}>{day}</Text>
+      {subjects.map((item) => (
+        <View key={item.number.toString()} style={styles.subject}>
+          <View style={{flexDirection: "row"}}>
+            <Text style={[styles.number, {color: item.bold ? colors.grey : "#000"}]}>{item.number}</Text>
+            <Text style={[styles.name, {color: item.bold ? colors.grey : "#000"}]}>{item.name}</Text>
           </View>
-          <Text style={[styles.time, { color: colors.lightBlue }]}>{item.time}</Text>
-        </View>
-      )} />
+          <Text style={[styles.time, {color: colors.lightBlue}]}>{item.time}</Text>
+        </View>))}
     </View>
   );
 }
