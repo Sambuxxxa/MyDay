@@ -17,7 +17,6 @@ export default function BottomNavigation() {
       <Tab.Navigator
         screenOptions={{tabBarHideOnKeyboard: true}}
         initialRouteName={"DailaryScreen"}
-        // tabBarColor={"#000"}}
         tabBar={(props) => <TabBar {...props} />}
       >
         <Tab.Screen name="HomeWorkScreen" component={HomeWorkScreen} options={{ headerShown: false, tabBarHideOnKeyboard: true }} />

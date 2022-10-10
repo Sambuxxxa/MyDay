@@ -1,4 +1,4 @@
-import {Pressable, StyleSheet, Text} from "react-native";
+import {StyleSheet, Text, TouchableOpacity} from "react-native";
 import {useTheme} from "@react-navigation/native";
 import 'react-native-gesture-handler';
 import {mt500} from "../constants/Themes";
@@ -7,11 +7,11 @@ export default function ModalBTN({text, operation}) {
   const {colors} = useTheme();
 
   return (
-    <Pressable
+    <TouchableOpacity
       onPress={operation}
       style={[styles.container, {backgroundColor: colors.modalBTN}]}>
       <Text style={[styles.text, {color: colors.darkBlue}]}>{text}</Text>
-    </Pressable>
+    </TouchableOpacity>
   );
 }
 

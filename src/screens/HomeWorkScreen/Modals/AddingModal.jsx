@@ -102,7 +102,7 @@ const styles = StyleSheet.create({
   inp: {
     marginHorizontal: 20,
     borderWidth: 0.1,
-    borderRadius: 5,
+    borderRadius: 3,
     paddingHorizontal: 15,
   },
   btn: {
