@@ -2,7 +2,6 @@ import {ActivityIndicator, Image, StyleSheet, Text, View} from "react-native";
 import {useTheme} from "@react-navigation/native";
 import {mt400} from "../../constants/Themes";
 
-
 export default function SettingsScreen() {
   const {colors} = useTheme()
   return (
