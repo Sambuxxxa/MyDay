@@ -5,7 +5,7 @@ import {mt400, mt600} from "../../constants/Themes";
 import Ionicons from "react-native-vector-icons/Ionicons";
 
 
-export default function SubjectItem({item, changeCompleted, deleteItem}) {
+export default function SubjectItem({item, changeCompleted, setVisibleDeleteEl, setDeletedItem}) {
   const {colors} = useTheme();
 
   return (
@@ -23,7 +23,8 @@ export default function SubjectItem({item, changeCompleted, deleteItem}) {
       </View>
       <TouchableOpacity
         onPress={() => {
-          deleteItem(item)
+          setDeletedItem(item)
+          setVisibleDeleteEl(true)
         }}
         style={{flex: 1, alignItems: "center", justifyContent: "center"}}>
         <Ionicons name="trash-outline" size={24} color="black"/>

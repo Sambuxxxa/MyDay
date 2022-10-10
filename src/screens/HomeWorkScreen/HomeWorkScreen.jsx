@@ -4,8 +4,9 @@ import {useEffect, useState} from "react";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import AntDesign from "react-native-vector-icons/AntDesign";
 import SubjectItem from "./SubjectItem";
-import AddingModal from "./AddingModal";
+import AddingModal from "./Modals/AddingModal";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import DeleteElModal from "./Modals/DeleteElModal";
 
 export default function HomeWorkScreen() {
   useEffect(() => {
@@ -17,6 +18,8 @@ export default function HomeWorkScreen() {
   const [inpText, setInpText] = useState("");
   const [searchedElements, setSearchedElements] = useState(tasks);
   const [visibleAddEl, setVisibleAddEl] = useState(false);
+  const [visibleDeleteEl, setVisibleDeleteEl] = useState(true);
+  const [deletedItem, setDeletedItem] = useState({});
   const {colors} = useTheme();
 
   const storeData = async (value) => {
@@ -58,10 +61,10 @@ export default function HomeWorkScreen() {
     }
     getData()
   }
-  const deleteItem = async (item) => {
+  const deleteItem = async () => {
     try {
       const jsonValue = JSON.stringify(tasks.filter((el) => {
-        if (el.id !== item.id) {
+        if (el.id !== deletedItem.id) {
           return el;
         }
       }))
@@ -105,12 +108,20 @@ export default function HomeWorkScreen() {
           showsVerticalScrollIndicator={false}
           data={searchedElements}
           renderItem={({item}) => (
-            <SubjectItem deleteItem={deleteItem} changeCompleted={changeCompleted} item={item}/>)}/>
+            <SubjectItem setDeletedItem={setDeletedItem} setVisibleDeleteEl={setVisibleDeleteEl} changeCompleted={changeCompleted} item={item}/>)}/>
       </View>
       <Modal
+        animationType={"slide"}
         visible={visibleAddEl}
         onRequestClose={() => setVisibleAddEl(false)}>
         <AddingModal setVisibleAddEl={setVisibleAddEl} storeData={storeData}/>
+      </Modal>
+      <Modal
+        animationType={'none'}
+        transparent={true}
+        onRequestClose={() => setVisibleDeleteEl(false)}
+        visible={visibleDeleteEl}>
+        <DeleteElModal deleteItem={deleteItem} setVisibleDeleteEl={setVisibleDeleteEl}/>
       </Modal>
 
     </View>
