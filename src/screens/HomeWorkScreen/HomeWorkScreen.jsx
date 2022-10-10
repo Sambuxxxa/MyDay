@@ -10,7 +10,6 @@ import DeleteElModal from "./Modals/DeleteElModal";
 
 export default function HomeWorkScreen() {
   useEffect(() => {
-    // storeData({isCompleted: false, text: '', subject: '', id: '1'})
     getData()
   }, []);
 
@@ -18,7 +17,7 @@ export default function HomeWorkScreen() {
   const [inpText, setInpText] = useState("");
   const [searchedElements, setSearchedElements] = useState(tasks);
   const [visibleAddEl, setVisibleAddEl] = useState(false);
-  const [visibleDeleteEl, setVisibleDeleteEl] = useState(true);
+  const [visibleDeleteEl, setVisibleDeleteEl] = useState(false);
   const [deletedItem, setDeletedItem] = useState({});
   const {colors} = useTheme();
 
