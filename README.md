@@ -1,6 +1,8 @@
 # MyDay
 A mobile responsive apps for ios and android using React Native
 
+![screenshots of example app](/src/assets/app/README.png)
+
 **Installation**
 
 Clone the repo
